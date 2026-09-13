@@ -20,24 +20,20 @@ const app = express();
 
 const PORT = process.env.PORT || 5001;
 
-// Middleware
+// CORS
 const corsOptions = {
-  origin: [
-    "https://focus-flow-2zto.vercel.app",
-    "http://localhost:3000",
-  ],
+  origin: "https://focus-flow-2zto.vercel.app",
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(passport.initialize());
 
-// Database
 connectDB();
 
-// Test route
 app.get("/", (req, res) => {
   res.json({
     message: "FocusFlow Backend is Working 🚀",
@@ -53,5 +49,5 @@ app.use("/api/kanban", kanbanRoutes);
 app.use("/api/xp", xpRoutes);
 
 app.listen(PORT, () => {
-  console.log(`FocusFlow Backend running on http://localhost:${PORT}`);
+  console.log(`FocusFlow Backend running on port ${PORT}`);
 });
