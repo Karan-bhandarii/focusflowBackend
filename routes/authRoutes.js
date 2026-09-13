@@ -19,7 +19,18 @@ router.post("/signup", signup);
 // NORMAL LOGIN
 // ========================================
 
-router.post("/login", login);
+router.post("/login", async (req, res) => {
+  try {
+    // your existing login code
+  } catch (error) {
+    console.error("LOGIN ERROR:", error);
+
+    res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
+});
 
 // ========================================
 // GITHUB LOGIN / SIGNUP
